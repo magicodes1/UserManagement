@@ -35,4 +35,17 @@ public class AccountController : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpPost]
+    [Route("signin")]
+    public async Task<IActionResult> Signin(SigninDTO signinDTO)
+    {
+        if (signinDTO == null) throw new BadRequestException("payload is null");
+
+        if (!ModelState.IsValid) throw new BadRequestException("Model is invalid");
+
+        var result = await _account.Signin(signinDTO);
+
+        return Ok(result);
+    }
 }

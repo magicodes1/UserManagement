@@ -36,12 +36,15 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.User.AllowedUserNameCharacters =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._";
 });
-
+// auto mapper
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
+// jwt configurations
+builder.Services.AddJwtTokenAuthentication(builder.Configuration);
 
 builder.Services.AddScoped<IRoleService,RoleService>();
 builder.Services.AddScoped<IAccountService,AccountService>();
+builder.Services.AddScoped<ITokenService,TokenService>();
 
 
 var app = builder.Build();

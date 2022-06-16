@@ -6,4 +6,5 @@ namespace UserManagement.UserManager.Interfaces.Services;
 public interface IAccountService
 {
     Task<DataResponse> Signup (SignupDTO signupDTO);
+    Task<DataResponse> Signin(SigninDTO signinDTO);
 }

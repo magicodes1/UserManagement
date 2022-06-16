@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using UserManagement.UserManager.Data;
+using UserManagement.UserManager.Extensions;
 using UserManagement.UserManager.Models.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,9 @@ builder.Services.Configure<IdentityOptions>(options =>
 var app = builder.Build();
 
 app.Logger.LogInformation("Building Application......................");
+
+// Catching global error 500
+app.ConfigureExceptionHandler();
 
 app.UseRouting();
 app.UseAuthentication();

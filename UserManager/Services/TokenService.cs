@@ -17,6 +17,12 @@ public class TokenService : ITokenService
         _jwtConfig=options.Value;
     }
 
+    public IEnumerable<Claim> getCLaim(string token)
+    {
+        var claims = new JwtSecurityTokenHandler().ReadJwtToken(token).Claims;
+        return claims!;
+    }
+
     public string tokenGeneration(string userName, string id, List<string> roles)
     {
        var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtConfig.SecretKey));

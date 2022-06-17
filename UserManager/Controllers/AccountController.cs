@@ -13,14 +13,9 @@ namespace UserManagement.UserManager.Controllers;
 public class AccountController : ControllerBase
 {
     private readonly IAccountService _account;
-
-
-    private readonly ILogger<AccountController> _logger;
-
-    public AccountController(IAccountService account, ILogger<AccountController> logger)
+    public AccountController(IAccountService account)
     {
         _account = account;
-        _logger = logger;
     }
 
     [HttpPost]

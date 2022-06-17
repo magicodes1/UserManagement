@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using UserManagement.UserManager.Data;
 using UserManagement.UserManager.Extensions;
 using UserManagement.UserManager.Interfaces.Services;
+using UserManagement.UserManager.Interfaces.UnitOfWork;
 using UserManagement.UserManager.Models.Entities;
+using UserManagement.UserManager.Repositories;
 using UserManagement.UserManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,6 +47,10 @@ builder.Services.AddJwtTokenAuthentication(builder.Configuration);
 builder.Services.AddScoped<IRoleService,RoleService>();
 builder.Services.AddScoped<IAccountService,AccountService>();
 builder.Services.AddScoped<ITokenService,TokenService>();
+
+
+builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
+builder.Services.AddScoped<IUserService,UserService>();
 
 
 var app = builder.Build();

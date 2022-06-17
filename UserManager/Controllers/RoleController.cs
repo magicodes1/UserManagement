@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UserManagement.UserManager.DTOs;
 using UserManagement.UserManager.Exceptions;
@@ -15,7 +16,9 @@ public class RoleController : ControllerBase
     {
         _role = role;
     }
+
     [HttpPost]
+    [Authorize(Roles = "ADMIN")]
     public async Task<IActionResult> AddRoleToUser(AddRoleDTO addRoleDTO)
     {
         if (addRoleDTO == null) throw new BadRequestException("payload is null");
